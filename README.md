@@ -1,6 +1,7 @@
 # Nimonik stuff
 
 To deploy from any machine:
+
 1. clone this project
 2. switch to pg-upstream-nimonik
 3. make sure config.yml and deploy.rb are copied from example files (bootstrap should do that, see below)
