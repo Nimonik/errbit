@@ -1,3 +1,11 @@
+# Nimonik stuff
+
+To deploy from any machine:
+1. clone this project
+2. switch to pg-upstream-nimonik
+3. make sure config.yml and deploy.rb are copied from example files (bootstrap should do that, see below)
+4. deploy!
+
 # Errbit [![TravisCI][travis-img-url]][travis-ci-url] [![Code Climate][codeclimate-img-url]][codeclimate-url]
 
 [travis-img-url]: https://secure.travis-ci.org/errbit/errbit.png?branch=master
