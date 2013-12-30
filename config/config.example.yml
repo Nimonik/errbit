@@ -9,14 +9,14 @@
 # You will need to restart the server after changing any settings.
 
 # The host of your errbit server
-host: errbit.example.com
+host: errbit.nimonikapp.com
 
 # Enforce SSL connections
 enforce_ssl: false
 
 # The email address which email notifications
 # will be sent from.
-email_from: errbit@example.com
+email_from: errbit@nimonikapp.com
 
 # If you turn on this option, email_at_notices can be
 # configured on a per app basis, at the App edit page
@@ -53,12 +53,13 @@ gravatar_default: identicon
 # Setup your deploy options for capistrano.
 deployment:
   hosts:
-    web: errbit.example.com
-    app: errbit.example.com
-    db: errbit.example.com
-  repository: http://github.com/errbit/errbit.git
-  user: deploy
+    web: errbit.nimonikapp.com
+    app: errbit.nimonikapp.com
+    db: errbit.nimonikapp.com
+  repository: https://github.com/Nimonik/errbit.git
+  user: nimonik
   deploy_to: /var/www/apps/errbit
+  ssh_port: 22
   # setup path to unicorn pids folder (or deploy_to/shared/pids will be used)
   # pids: /var/www/apps/errbit/shared/pids
 
@@ -91,4 +92,3 @@ github_access_scope: ['repo']
 #  :enable_starttls_auto: true
 #  :user_name:            USERNAME
 #  :password:             PASSWORD
-

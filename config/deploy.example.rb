@@ -21,9 +21,9 @@ role :db,  config['hosts']['db'], :primary => true
 set :user, config['user']
 set :use_sudo, false
 if config.has_key?('ssh_key')
-  set :ssh_options,      { :forward_agent => true, :keys => [ config['ssh_key'] ] }
+  set :ssh_options,      { :forward_agent => true, :keys => [ config['ssh_key'] ], :port => config['ssh_port'] }
 else
-  set :ssh_options,      { :forward_agent => true }
+  set :ssh_options,      { :forward_agent => true, :port => config['ssh_port'] }
 end
 default_run_options[:pty] = true
 
@@ -32,6 +32,11 @@ set :deploy_via, :remote_cache
 set :copy_cache, true
 set :copy_exclude, [".git"]
 set :copy_compression, :bz2
+set :default_environment, {
+  'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH",
+}
+
+set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 
 set :scm, :git
 set :scm_verbose, true
@@ -69,8 +74,13 @@ namespace :errbit do
     shared_configs = File.join(shared_path,'config')
     release_configs = File.join(release_path,'config')
     run("ln -nfs #{shared_configs}/config.yml #{release_configs}/config.yml")
-    run("ln -nfs #{shared_configs}/mongoid.yml #{release_configs}/mongoid.yml")
+    run("ln -nfs #{shared_configs}/database.yml #{release_configs}/database.yml")
     run("ln -nfs #{shared_configs}/secret_token.rb #{release_configs}/initializers/secret_token.rb")
+  end
+
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
   end
 end
 
