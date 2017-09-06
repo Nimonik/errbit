@@ -195,12 +195,9 @@ GEM
     pg (0.14.1)
     pivotal-tracker (0.5.4)
       builder
-      builder
-      happymapper (>= 0.3.2)
       happymapper (>= 0.3.2)
       nokogiri (>= 1.4.3)
       nokogiri (~> 1.4)
-      rest-client (~> 1.6.0)
       rest-client (~> 1.6.0)
     polyglot (0.3.3)
     premailer (1.7.3)
@@ -381,3 +378,6 @@ DEPENDENCIES
   webmock
   xmpp4r
   yajl-ruby
+
+BUNDLED WITH
+   1.15.4
