@@ -4,8 +4,18 @@ To deploy from any machine:
 
 1. clone this project
 2. switch to pg-upstream-nimonik
-3. make sure config.yml and deploy.rb are copied from example files (bootstrap should do that, see below)
-4. deploy!
+3. run gem install bundler && bundle install (google for problems with native gems)
+4. get the deployment config via: scp nimonik@monitoring-zabbix-errbit:/var/www/apps/errbit/current/config/config.yml
+config/
+5. Do: cp config/deploy.example.rb config/deploy.rb
+6. Do: cap deploy
+7. Since the deployment is not unicorn friendly, ssh to the server and run:
+
+```
+$ sudo /etc/init.d/unicorn_errbit restart
+```
+
+8. In extreme cases (change in config) - unicorn stop/start may be necessary.
 
 # Errbit [![TravisCI][travis-img-url]][travis-ci-url] [![Code Climate][codeclimate-img-url]][codeclimate-url]
 
